@@ -93,17 +93,3 @@ function saveTotal(total) {
         console.error("Error saving total: ", error);
     });
 }
-
-function loadTotal() {
-    db.collection("totals").doc("latest").get().then((doc) => {
-        if (doc.exists) {
-            console.log("Total data:", doc.data());
-            total = doc.data().value;  // Update your total variable
-            updateTotalDisplay();
-        } else {
-            console.log("No such document!");
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
-}

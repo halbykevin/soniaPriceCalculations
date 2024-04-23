@@ -1,87 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cash In/Out Tracker</title>
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-    <!-- Add Firestore -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "your-api-key",
-            authDomain: "your-project-id.firebaseapp.com",
-            projectId: "your-project-id",
-            storageBucket: "your-project-id.appspot.com",
-            messagingSenderId: "your-sender-id",
-            appId: "your-app-id"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        var db = firebase.firestore();
-    </script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lock Screen</title>
     <style>
-        /* Your CSS here */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f3f4f6;
+        font-family: Arial, sans-serif;
+      }
+      .login {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      input[type="password"],
+      button {
+        padding: 10px;
+        margin-top: 5px;
+        width: 200px;
+        display: block;
+      }
     </style>
-</head>
-<body>
-    <div id="total">Total: $0</div>
-    <button onclick="cashIn()">Cash In</button>
-    <button onclick="cashOut()">Cash Out</button>
+  </head>
+  <body>
+    <div class="login">
+      <input type="password" id="password" placeholder="Enter Password" />
+      <button onclick="checkPassword()">Unlock</button>
+    </div>
     <script>
-        let total = 0; // Total amount
+      function checkPassword() {
+        var passwordInput = document.getElementById("password").value;
+        var correctPassword = "1122"; // Set your password here
 
-        function updateTotalDisplay() {
-            document.getElementById('total').textContent = `Total: $${total}`;
+        if (passwordInput === correctPassword) {
+          window.location.href = "lock.html"; // Redirect to main page
+        } else {
+          alert("Incorrect Password!");
         }
-
-        function cashIn() {
-            const amount = parseFloat(prompt("Enter the amount to cash in:"));
-            if (!isNaN(amount)) {
-                total += amount;
-                updateTotalDisplay();
-                saveTotal(total);
-            }
-        }
-
-        function cashOut() {
-            const amount = parseFloat(prompt("Enter the amount to cash out:"));
-            if (!isNaN(amount)) {
-                total -= amount;
-                updateTotalDisplay();
-                saveTotal(total);
-            }
-        }
-
-        function saveTotal(total) {
-            db.collection("totals").doc("latest").set({
-                value: total
-            })
-            .then(() => {
-                console.log("Total successfully saved!");
-            })
-            .catch((error) => {
-                console.error("Error saving total: ", error);
-            });
-        }
-
-        function loadTotal() {
-            db.collection("totals").doc("latest").get().then((doc) => {
-                if (doc.exists) {
-                    total = doc.data().value;  // Update your total variable
-                    updateTotalDisplay();
-                } else {
-                    console.log("No such document!");
-                }
-            }).catch((error) => {
-                console.log("Error getting document:", error);
-            });
-        }
-
-        // Call loadTotal when the page loads
-        window.onload = loadTotal;
+      }
     </script>
-</body>
+    
+  </body>
 </html>
