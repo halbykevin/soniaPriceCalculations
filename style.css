@@ -23,7 +23,7 @@ button {
     padding: 30px 50px;
     font-size: 16px;
     color: black;
-    background-color: grey;
+    background-color: white;
 }
 #clearHistoryButton{
     background-color:rgba(255, 0, 0, 0.51);
