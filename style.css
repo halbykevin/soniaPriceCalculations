@@ -1,5 +1,16 @@
 body {
+    background-color: black;
+    color: white;
     font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+}
+
+.container {
+    text-align: center; /* Centering text for all child elements */
 }
 
 #total {
@@ -9,9 +20,15 @@ body {
 
 button {
     margin: 5px;
-    padding: 10px 20px;
+    padding: 30px 50px;
+    font-size: 16px;
+    color: black;
+    background-color: grey;
 }
-
+#clearHistoryButton{
+    background-color:rgba(255, 0, 0, 0.51);
+}
 #historyLog {
     margin-top: 20px;
+    display: none; /* Ensuring it's not visible by default */
 }

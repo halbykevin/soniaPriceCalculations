@@ -7,14 +7,17 @@
     <title>Cash In/Out Tracker</title>
 </head>
 <body>
-    <button id="historyButton">History</button>
-    <button id="clearHistoryButton">Clear History</button>
-    <div id="total">Total: $0</div>
-    <button onclick="cashIn()">Cash In</button>
-    <button onclick="cashOut()">Cash Out</button>
-    <div id="historyLog" style="display: none;">
-        <h2>Transaction History</h2>
-        <ul id="historyList"></ul>
+    <div class="container">
+        <div id="total">Total: $0</div>
+        <button id="historyButton">History</button>
+        <button id="clearHistoryButton">Clear History</button>
+        
+        <button onclick="cashIn()">Cash In</button>
+        <button onclick="cashOut()">Cash Out</button>
+        <div id="historyLog" style="display: none">
+            <h2>Transaction History</h2>
+            <ul id="historyList"></ul>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
