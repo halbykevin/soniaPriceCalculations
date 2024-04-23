@@ -81,3 +81,29 @@ document
 
 loadFromLocalStorage(); // Load data from local storage on page load
 updateTotalDisplay(); // Update the display based on loaded data
+
+function saveTotal(total) {
+    db.collection("totals").doc("latest").set({
+        value: total
+    })
+    .then(() => {
+        console.log("Total successfully saved!");
+    })
+    .catch((error) => {
+        console.error("Error saving total: ", error);
+    });
+}
+
+function loadTotal() {
+    db.collection("totals").doc("latest").get().then((doc) => {
+        if (doc.exists) {
+            console.log("Total data:", doc.data());
+            total = doc.data().value;  // Update your total variable
+            updateTotalDisplay();
+        } else {
+            console.log("No such document!");
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+}
