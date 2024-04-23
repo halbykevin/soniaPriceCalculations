@@ -1,24 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Cash In/Out Tracker</title>
-</head>
-<body>
-    <div class="container">
-        <div id="total">Total: $0</div>
-        <button id="historyButton">History</button>
-        <button id="clearHistoryButton">Clear History</button>
-        
-        <button onclick="cashIn()">Cash In</button>
-        <button onclick="cashOut()">Cash Out</button>
-        <div id="historyLog" style="display: none">
-            <h2>Transaction History</h2>
-            <ul id="historyList"></ul>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lock Screen</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f3f4f6;
+        font-family: Arial, sans-serif;
+      }
+      .login {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      input[type="password"],
+      button {
+        padding: 10px;
+        margin-top: 5px;
+        width: 200px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+      <input type="password" id="password" placeholder="Enter Password" />
+      <button onclick="checkPassword()">Unlock</button>
     </div>
-    <script src="script.js"></script>
-</body>
+    <script>
+      function checkPassword() {
+        var passwordInput = document.getElementById("password").value;
+        var correctPassword = "1122"; // Set your password here
+
+        if (passwordInput === correctPassword) {
+          window.location.href = "lock.html"; // Redirect to main page
+        } else {
+          alert("Incorrect Password!");
+        }
+      }
+    </script>
+  </body>
 </html>
