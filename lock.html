@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Cash In/Out Tracker</title>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <div id="total">Total: $0</div>
-      <button id="historyButton">History</button>
+        <div id="total">Total: $0</div>
+        <button id="historyButton">History</button>
+        <button onclick="cashIn()">Cash In</button>
+        <button onclick="cashOut()">Cash Out</button>
+        <button id="createNewButton">Create New</button>
+        
+        <!-- New Transaction Form -->
+        <div id="newTransactionForm" style="display: none;">
+            <input type="number" id="newAmount" placeholder="Enter amount" />
+            <input type="date" id="newDate" />
+            <select id="transactionType">
+                <option value="Cash In">Cash In</option>
+                <option value="Cash Out">Cash Out</option>
+            </select>
+            <button onclick="addTransaction()">Add Transaction</button>
+        </div>
 
-      <button onclick="cashIn()">Cash In</button>
-      <button onclick="cashOut()">Cash Out</button>
-      <div id="historyLog" style="display: none">
-        <h2>Transaction History</h2>
-        <ul id="historyList"></ul>
-      </div>
+        <div id="historyLog" style="display: none">
+            <h2>Transaction History</h2>
+            <ul id="historyList"></ul>
+        </div>
     </div>
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
